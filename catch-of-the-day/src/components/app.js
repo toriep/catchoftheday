@@ -11,8 +11,8 @@ export default class App extends Component {
     addFish = fish => {
         const fishes = {...this.state.fishes}
         fishes[`fish${Date.now()}`] = fish;
-        this.setState({fishes})
-    }
+        this.setState({ fishes })
+     }
     render() {
         return (
             <div className="catch-of-the-day">
