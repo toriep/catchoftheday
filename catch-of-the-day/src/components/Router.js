@@ -5,7 +5,7 @@ import {
     Switch
 } from 'react-router-dom';
 import StorePicker from './Storepicker';
-import App from './App';
+import App from './app';
 import NotFound from './NotFound';
 
 const Router = () => (
