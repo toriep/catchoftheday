@@ -13,7 +13,7 @@ export default class App extends Component {
         order: {}
     }
 
-    static PropTypes = {
+    static propTypes = {
         match: PropTypes.object
     }
     
@@ -90,6 +90,7 @@ export default class App extends Component {
                     deleteFish={this.deleteFish}
                     loadSampleFishes={this.loadSampleFishes}
                     fishes={this.state.fishes} 
+                    storeId={this.props.match.params.storeId}
                 />
             </div>
         )
