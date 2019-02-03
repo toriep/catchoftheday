@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 
 class AddFishForm extends Component{
     nameRef = React.createRef();
@@ -6,7 +8,10 @@ class AddFishForm extends Component{
     statusRef = React.createRef();
     descrRef = React.createRef();
     imageRef = React.createRef();
-
+    
+    static propTypes = {
+        addFish: PropTypes.func
+    }
     createFish = (event) => {
         event.preventDefault();
         const fish = {
