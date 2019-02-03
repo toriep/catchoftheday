@@ -3,13 +3,40 @@ import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes';
-import Fish from './Fish'
+import Fish from './Fish';
+import base from '../base';
 
 export default class App extends Component {
     state = {
         fishes: {},
         order: {}
     }
+    
+    componentDidMount() {
+        const { params } = this.props.match;
+        const localStorageRef = localStorage.getItem(params.storeId)
+        if(localStorageRef){
+            console.log('JSON.parse(localStorageRef) :', JSON.parse(localStorageRef));
+            this.setState({
+                order: JSON.parse(localStorageRef)
+            })
+        }
+        console.log('localStorageRef :', localStorageRef);
+        this.ref = base.syncState(`${params.storeId}/fishes`,{
+            context: this,
+            state: 'fishes'
+        })
+    }
+
+    componentDidUpdate() {
+        const { params } = this.props.match;
+        localStorage.setItem(params.storeId, JSON.stringify(this.state.order))
+    }
+
+    componentWillUnmount(){
+        base.removeBinding(this.ref)
+    }
+    
     addFish = fish => {
         const fishes = {...this.state.fishes}
         fishes[`fish${Date.now()}`] = fish;
